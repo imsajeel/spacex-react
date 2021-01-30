@@ -2,13 +2,26 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./components/App/App";
+
+import {
+  gql,
+  ApolloProvider,
+  InMemoryCache,
+  ApolloClient,
+} from "@apollo/client";
+
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 import reportWebVitals from "./reportWebVitals";
 
+const client = new ApolloClient({
+  uri: `https://spacexdata.herokuapp.com/graphql`,
+  cache: new InMemoryCache(),
+});
+
 ReactDOM.render(
-  <React.StrictMode>
+  <ApolloProvider client={client}>
     <App />
-  </React.StrictMode>,
+  </ApolloProvider>,
   document.getElementById("root")
 );
 

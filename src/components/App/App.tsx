@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { GeistProvider, CssBaseline } from "@geist-ui/react";
 import NavBar from "../NavBar/NavBar";
 import Home from "../Home/Home";
+import Launch from "../Launch";
+import LaunchDetails from "../LaunchDetails";
 
 const App = () => {
   return (
@@ -20,6 +22,12 @@ const App = () => {
           </Route>
           <Route path="/missions">
             <div>missions</div>
+          </Route>
+          <Route path="/launches">
+            <Launch />
+          </Route>
+          <Route path="/launch/:id">
+            <LaunchDetails />
           </Route>
           <Route path="/">
             <Home />

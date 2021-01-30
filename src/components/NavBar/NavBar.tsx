@@ -29,7 +29,7 @@ const NavBar = () => {
             <NavButton to="/missions">Missions</NavButton>
           </Grid>
           <Grid xs={6}>
-            <NavButton to="/ships">Launches</NavButton>
+            <NavButton to="/launches">Launches</NavButton>
           </Grid>
         </Grid.Container>
       </Grid>
