@@ -1,25 +1,23 @@
 import React from "react";
-import { LaunchListQuery } from "../../generated/graphql";
 import { Link as RouterLink } from "react-router-dom";
 import { Card, Image, Text } from "@geist-ui/react";
+import { RocketListQuery } from "../../generated/graphql";
 
 interface Props {
-  data: LaunchListQuery;
+  data: RocketListQuery;
 }
 
 const NOIMAGE = "https://paganresearch.io/images/SpaceX.jpg";
 
-const Launch: React.FC<Props> = ({ data }) => {
+const Rockets: React.FC<Props> = ({ data }) => {
   return (
-    <div className="Launches">
-      <h3 style={{ margin: "5vh 0px", textAlign: "center" }}>
-        SpaceX Recent Launches
-      </h3>
+    <div>
+      <h3 style={{ margin: "5vh 0px", textAlign: "center" }}>SpaceX Rockets</h3>
       <div className="flex-wrap">
-        {!!data.launches &&
-          data.launches.map(
-            (launch, i) =>
-              !!launch && (
+        {!!data.rockets &&
+          data.rockets.map(
+            (rocket, i) =>
+              !!rocket && (
                 <Card
                   key={i}
                   style={{ minHeight: "250px", margin: "10px" }}
@@ -27,22 +25,22 @@ const Launch: React.FC<Props> = ({ data }) => {
                   shadow
                 >
                   {/* <Image
-                    src={
-                      !!launch?.links?.flickr_images[0]
-                        ? launch.links?.flickr_images[0]
-                        : noImage
-                    }
-                    style={{ objectFit: "cover", height: "250px" }}
-                  /> */}
-                  <CustomImage images={launch.links?.flickr_images} />
+              src={
+                !!launch?.links?.flickr_images[0]
+                  ? launch.links?.flickr_images[0]
+                  : noImage
+              }
+              style={{ objectFit: "cover", height: "250px" }}
+            /> */}
+                  <CustomImage images={rocket?.flickr_images} />
                   <Text h4 style={{ marginBottom: "0" }}>
-                    {launch.mission_name}
+                    {rocket.rocket_name}
                   </Text>
                   <Text type="secondary" small>
-                    {launch.launch_year}
+                    First flight: {rocket.first_flight}
                   </Text>
                   <Card.Footer>
-                    <RouterLink to={`/launch/${launch.flight_number}`}>
+                    <RouterLink to={`/rocket/${rocket.id}`}>
                       View Details
                     </RouterLink>
                   </Card.Footer>
@@ -64,4 +62,5 @@ const CustomImage = ({ images }: any) => {
     />
   );
 };
-export default Launch;
+
+export default Rockets;

@@ -5,6 +5,9 @@ import NavBar from "../NavBar/NavBar";
 import Home from "../Home/Home";
 import Launch from "../Launch";
 import LaunchDetails from "../LaunchDetails";
+import Rockets from "../Rockets";
+import Missions from "../Missions";
+import MissionDetails from "../MissionDetails";
 
 const App = () => {
   return (
@@ -15,13 +18,13 @@ const App = () => {
         <NavBar />
         <Switch>
           <Route path="/rockets">
-            <div>rockets</div>
-          </Route>
-          <Route path="/ships">
-            <div>ships</div>
+            <Rockets />
           </Route>
           <Route path="/missions">
-            <div>missions</div>
+            <Missions />
+          </Route>
+          <Route path="/mission/:id">
+            <MissionDetails />
           </Route>
           <Route path="/launches">
             <Launch />
@@ -33,6 +36,7 @@ const App = () => {
             <Home />
           </Route>
         </Switch>
+        {/* <Footer /> */}
       </Router>
     </GeistProvider>
   );

@@ -8,6 +8,7 @@ const Footer = () => {
         backgroundColor: "black",
         padding: "30px 10px",
         textAlign: "center",
+        marginTop: "100px",
       }}
     >
       SPACEX © {currentDate.getFullYear()}

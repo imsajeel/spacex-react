@@ -1,26 +1,27 @@
 import React from "react";
-import { useLaunchListQuery } from "../../generated/graphql";
+import { useRocketListQuery } from "../../generated/graphql";
 import ErrorPage from "../ErrorPage/ErrorPage";
 import Footer from "../Footer/Footer";
 import LoadingPage from "../LoadingPage/LoadingPage";
-import Launch from "./Launch";
+import Rockets from "./Rockets";
 
-const LaunchContainer = () => {
-  const { data, error, loading } = useLaunchListQuery();
+const RocketsContainer = () => {
+  let { data, error, loading } = useRocketListQuery();
 
   if (loading) {
     return <LoadingPage />;
   }
+
   if (error || !data) {
     return <ErrorPage />;
   }
 
   return (
     <div className="page-center">
-      <Launch data={data} />
+      <Rockets data={data} />
       <Footer />
     </div>
   );
+  // return <div>Hekko</div>;
 };
-
-export default LaunchContainer;
+export default RocketsContainer;

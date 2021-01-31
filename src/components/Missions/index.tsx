@@ -1,26 +1,27 @@
 import React from "react";
-import { useLaunchListQuery } from "../../generated/graphql";
+import { useMissionsListQuery } from "../../generated/graphql";
 import ErrorPage from "../ErrorPage/ErrorPage";
 import Footer from "../Footer/Footer";
 import LoadingPage from "../LoadingPage/LoadingPage";
-import Launch from "./Launch";
+import Missions from "./Missions";
 
-const LaunchContainer = () => {
-  const { data, error, loading } = useLaunchListQuery();
+const MissionsContainer = () => {
+  const { data, loading, error } = useMissionsListQuery();
 
   if (loading) {
     return <LoadingPage />;
   }
+
   if (error || !data) {
     return <ErrorPage />;
   }
 
   return (
     <div className="page-center">
-      <Launch data={data} />
+      <Missions data={data} />
       <Footer />
     </div>
   );
 };
 
-export default LaunchContainer;
+export default MissionsContainer;

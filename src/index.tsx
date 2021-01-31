@@ -3,12 +3,7 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./components/App/App";
 
-import {
-  gql,
-  ApolloProvider,
-  InMemoryCache,
-  ApolloClient,
-} from "@apollo/client";
+import { ApolloProvider, InMemoryCache, ApolloClient } from "@apollo/client";
 
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 import reportWebVitals from "./reportWebVitals";
