@@ -2,6 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { useMissionDetailsQuery } from "../../generated/graphql";
 import ErrorPage from "../ErrorPage/ErrorPage";
+import Footer from "../Footer/Footer";
 import LoadingPage from "../LoadingPage/LoadingPage";
 import MissionDetails from "./MissionDetails";
 
@@ -22,6 +23,7 @@ const MissionDetailsContainer = () => {
   return (
     <div className="page-center">
       <MissionDetails data={data} />
+      <Footer />
     </div>
   );
 };
