@@ -6,7 +6,6 @@ interface Props {
   data: MissionDetailsQuery;
 }
 const MissionDetails: React.FC<Props> = ({ data }) => {
-  console.log(data);
   return (
     <div style={{ margin: "10px" }}>
       <h3 style={{ margin: "5vh 0px", textAlign: "center" }}>
