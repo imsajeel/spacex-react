@@ -1,7 +1,9 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { LaunchListQuery } from "../../generated/graphql";
 import { Link as RouterLink } from "react-router-dom";
-import { Card, Image, Text } from "@geist-ui/react";
+import { Card, Text } from "@geist-ui/react";
+import MyImageComponent from "../MyImageComponent/MyImageComponent";
+import LoadingImage from "../MyImageComponent/LoadingBox";
 
 interface Props {
   data: LaunchListQuery;
@@ -34,7 +36,10 @@ const Launch: React.FC<Props> = ({ data }) => {
                     }
                     style={{ objectFit: "cover", height: "250px" }}
                   /> */}
-                  <CustomImage images={launch.links?.flickr_images} />
+
+                  <Suspense fallback={<LoadingImage />}>
+                    <CustomImage images={launch.links?.flickr_images} />
+                  </Suspense>
                   <Text h4 style={{ marginBottom: "0" }}>
                     {launch.mission_name}
                   </Text>
@@ -55,13 +60,26 @@ const Launch: React.FC<Props> = ({ data }) => {
 };
 
 const CustomImage = ({ images }: any) => {
-  return (
-    <Image
-      src={images[0] ? images[0] : NOIMAGE}
-      // height={250}
-      // width={250}
-      style={{ objectFit: "cover", height: "250px" }}
-    />
-  );
+  if (images.length > 0) {
+    return (
+      <MyImageComponent
+        src={images[0]}
+        // height={250}
+        // width={250}
+        alt={"cover of mission"}
+        style={{ objectFit: "cover", height: "250px" }}
+      />
+    );
+  } else {
+    return (
+      <MyImageComponent
+        src={NOIMAGE}
+        // height={250}
+        // width={250}
+        alt={"cover of mission"}
+        style={{ objectFit: "cover", height: "250px" }}
+      />
+    );
+  }
 };
 export default Launch;

@@ -1,8 +1,10 @@
 import { Card, Spacer, Table } from "@geist-ui/react";
 import YouTube from "react-youtube";
-import React from "react";
+import React, { Suspense } from "react";
 import { LaunchInfoQuery } from "../../generated/graphql";
 import { CheckInCircle, XCircle } from "@geist-ui/react-icons";
+import MyImageComponent from "../MyImageComponent/MyImageComponent";
+import LoadingImage from "../MyImageComponent/LoadingBox";
 
 interface Props {
   data: LaunchInfoQuery;
@@ -50,26 +52,28 @@ const LaunchDetails: React.FC<Props> = ({ data }) => {
             <Table.Column prop="value" label="Information" />
           </Table>
           <Spacer y={5} x={2} />
-          <div
-            style={{
-              maxWidth: "250px",
-              maxHeight: "250px",
-              margin: "0px 10px 10px 0px",
-              borderRadius: "5px",
-              overflow: "hidden",
-            }}
-          >
-            {!!launch?.links?.flickr_images && (
-              <img
-                src={
-                  launch?.links?.flickr_images[0]
-                    ? launch?.links?.flickr_images[0].toString()
-                    : "https://paganresearch.io/images/SpaceX.jpg"
-                }
-                alt={launch?.mission_name?.toString()}
-              />
-            )}
-          </div>
+          {!!launch?.links?.flickr_images && (
+            <Suspense fallback={<LoadingImage />}>
+              <div
+                style={{
+                  width: "250px",
+                  maxHeight: "250px",
+                  margin: "0px 10px 10px 0px",
+                  borderRadius: "5px",
+                  overflow: "hidden",
+                }}
+              >
+                <MyImageComponent
+                  src={
+                    launch?.links?.flickr_images[0]
+                      ? launch?.links?.flickr_images[0].toString()
+                      : "https://paganresearch.io/images/SpaceX.jpg"
+                  }
+                  alt={launch?.mission_name?.toString()}
+                />
+              </div>
+            </Suspense>
+          )}
         </div>
         <p>{launch?.details}</p>
         <div style={{ margin: "50px 10px" }}>
@@ -77,7 +81,6 @@ const LaunchDetails: React.FC<Props> = ({ data }) => {
             <VideoLink url={launch?.links?.video_link} />
           )}
         </div>
-
         {!!launch?.links?.flickr_images && (
           <>
             <h3 style={{ textAlign: "center" }}>Images</h3>
@@ -85,7 +88,9 @@ const LaunchDetails: React.FC<Props> = ({ data }) => {
               if (image) {
                 return (
                   <div key={i}>
-                    <img src={image} alt={image} />
+                    <Suspense fallback={<LoadingImage />}>
+                      <MyImageComponent src={image} alt={image} />
+                    </Suspense>
                   </div>
                 );
               } else {
