@@ -26,3 +26,7 @@ code {
   justify-content: center;
   flex-wrap: wrap;
 }
+
+.youtube-container {
+  max-width: 100%;
+}

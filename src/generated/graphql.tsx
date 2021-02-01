@@ -760,7 +760,7 @@ export type LaunchInfoQuery = (
   { __typename?: 'Query' }
   & { launch?: Maybe<(
     { __typename?: 'Launch' }
-    & Pick<Launch, 'mission_name' | 'flight_number' | 'launch_year' | 'launch_success' | 'details'>
+    & Pick<Launch, 'mission_name' | 'flight_number' | 'launch_year' | 'launch_date_utc' | 'launch_success' | 'details'>
     & { launch_site?: Maybe<(
       { __typename?: 'LaunchSite' }
       & Pick<LaunchSite, 'site_name'>
@@ -854,6 +854,7 @@ export const LaunchInfoDocument = gql`
     mission_name
     flight_number
     launch_year
+    launch_date_utc
     launch_success
     details
     launch_site {

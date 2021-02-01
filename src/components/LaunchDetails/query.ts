@@ -6,6 +6,7 @@ export const QUERY_LAUNCH_DETAILS = gql`
       mission_name
       flight_number
       launch_year
+      launch_date_utc
       launch_success
       details
       launch_site {
