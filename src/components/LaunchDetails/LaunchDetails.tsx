@@ -1,4 +1,4 @@
-import { Fieldset } from "@geist-ui/react";
+import { Card } from "@geist-ui/react";
 import React from "react";
 import { LaunchInfoQuery } from "../../generated/graphql";
 
@@ -14,12 +14,12 @@ const LaunchDetails: React.FC<Props> = ({ data }) => {
   return (
     <div style={{ margin: "10px" }}>
       <h3 style={{ margin: "5vh 0px", textAlign: "center" }}>Launch Details</h3>
-      <Fieldset style={{ maxWidth: "800px" }}>
-        <Fieldset.Title>
+      <Card style={{ maxWidth: "800px" }}>
+        <h4>
           {launch?.mission_name} - {launch?.launch_year}
-        </Fieldset.Title>
-        <Fieldset.Subtitle>{launch?.details}</Fieldset.Subtitle>
-      </Fieldset>
+        </h4>
+        <p>{launch?.details}</p>
+      </Card>
     </div>
   );
 };

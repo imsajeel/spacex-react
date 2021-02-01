@@ -12,8 +12,8 @@ const MissionDetails: React.FC<Props> = ({ data }) => {
         Mission Details
       </h3>
       <Fieldset style={{ maxWidth: "800px" }}>
-        <Fieldset.Title>{data.mission?.mission_name}</Fieldset.Title>
-        <Fieldset.Subtitle>
+        <h4>{data.mission?.mission_name}</h4>
+        <div>
           {data.mission?.description}
           <div style={{ marginTop: "20px", display: "flex" }}>
             <Text b>Manufacturers: </Text>
@@ -34,7 +34,7 @@ const MissionDetails: React.FC<Props> = ({ data }) => {
                 })}
             </div>
           </div>
-        </Fieldset.Subtitle>
+        </div>
         <Fieldset.Footer>
           <Fieldset.Footer.Status>
             Links for more information

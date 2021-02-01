@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import logo from "./spacex-logo.png";
-import { Grid, Link } from "@geist-ui/react";
+import { Grid } from "@geist-ui/react";
 import { Link as RouterLink } from "react-router-dom";
 
 const NavBar = () => {
@@ -42,13 +42,13 @@ const NavButton = ({ children, to }: { children: string; to: string }) => {
 
   return (
     <RouterLink to={to} style={{ color: "white" }}>
-      <Link
+      <div
         style={{ color: hover ? "gray" : "white" }}
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
       >
         {children.toUpperCase()}
-      </Link>
+      </div>
     </RouterLink>
   );
 };
