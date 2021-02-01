@@ -1,4 +1,4 @@
-import { Fieldset, Text } from "@geist-ui/react";
+import { Fieldset } from "@geist-ui/react";
 import React from "react";
 import { LaunchInfoQuery } from "../../generated/graphql";
 
