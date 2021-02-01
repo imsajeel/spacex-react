@@ -36,7 +36,6 @@ const Launch: React.FC<Props> = ({ data }) => {
                     }
                     style={{ objectFit: "cover", height: "250px" }}
                   /> */}
-
                   <Suspense fallback={<LoadingImage />}>
                     <CustomImage images={launch.links?.flickr_images} />
                   </Suspense>
@@ -44,7 +43,7 @@ const Launch: React.FC<Props> = ({ data }) => {
                     {launch.mission_name}
                   </Text>
                   <Text type="secondary" small>
-                    {launch.launch_year}
+                    Flight Number: {launch.flight_number} ~ {launch.launch_year}
                   </Text>
                   <Card.Footer>
                     <RouterLink to={`/launch/${launch.flight_number}`}>
