@@ -1,7 +1,9 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { Link as RouterLink } from "react-router-dom";
-import { Card, Image, Text } from "@geist-ui/react";
+import { Card, Text } from "@geist-ui/react";
 import { RocketListQuery } from "../../generated/graphql";
+import LoadingImage from "../MyImageComponent/LoadingBox";
+import MyImageComponent from "../MyImageComponent/MyImageComponent";
 
 interface Props {
   data: RocketListQuery;
@@ -24,15 +26,9 @@ const Rockets: React.FC<Props> = ({ data }) => {
                   width="250px"
                   shadow
                 >
-                  {/* <Image
-              src={
-                !!launch?.links?.flickr_images[0]
-                  ? launch.links?.flickr_images[0]
-                  : noImage
-              }
-              style={{ objectFit: "cover", height: "250px" }}
-            /> */}
-                  <CustomImage images={rocket?.flickr_images} />
+                  <Suspense fallback={<LoadingImage />}>
+                    <CustomImage images={rocket?.flickr_images} />
+                  </Suspense>
                   <Text h4 style={{ marginBottom: "0" }}>
                     {rocket.rocket_name}
                   </Text>
@@ -54,7 +50,7 @@ const Rockets: React.FC<Props> = ({ data }) => {
 
 const CustomImage = ({ images }: any) => {
   return (
-    <Image
+    <MyImageComponent
       src={images[0] ? images[0] : NOIMAGE}
       // height={250}
       // width={250}
