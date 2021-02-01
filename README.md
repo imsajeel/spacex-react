@@ -4,4 +4,4 @@ bootcamp project 7a
 
 ## Link
 
-Open [https://spacex-sajeel.surge.sh](https:/spacex-sajeel.surge.sh)
+Open [https://spacex-sajeel.surge.sh](https://spacex-sajeel.surge.sh)
