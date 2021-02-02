@@ -812,7 +812,7 @@ export type RocketListQuery = (
 
 export const LaunchListDocument = gql`
     query launchList {
-  launches(limit: 20, order: desc, range: past) {
+  launches(limit: 10, order: desc, range: past) {
     flight_number
     mission_name
     launch_year
