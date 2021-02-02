@@ -1,5 +1,5 @@
-import { Button, Text } from "@geist-ui/react";
-import React from "react";
+import { Text } from "@geist-ui/react";
+import React, { useState } from "react";
 import homeImages from "../../images-home";
 import Footer from "../Footer/Footer";
 
@@ -34,10 +34,6 @@ const Home = () => {
           <Text size="1.5rem" b>
             STARSHIP SN9 HIGH-ALTITUDE FLIGHT TEST
           </Text>
-          <br />
-          <Button type="secondary" ghost>
-            WATCH
-          </Button>
         </div>
       </BackgroundImageComp>
       <BackgroundImageComp url={homeImages[1].url} sort={1} fullScreen={true}>
@@ -67,10 +63,6 @@ const Home = () => {
             transport crew between lunar orbit and the surface of the Moon as
             part of NASA’s Artemis program.
           </Text>
-          <br />
-          <Button type="secondary" ghost>
-            REWATCH
-          </Button>
         </div>
       </BackgroundImageComp>
       <BackgroundImageComp url={homeImages[2].url} sort={2} fullScreen={true}>
@@ -94,10 +86,6 @@ const Home = () => {
             International Space Station. However, the crew can take manual
             control of the spacecraft if necessary.
           </Text>
-          <br />
-          <Button type="secondary" ghost>
-            REWATCH
-          </Button>
         </div>
       </BackgroundImageComp>
       <BackgroundImageComp url={homeImages[3].url} sort={3} fullScreen={true}>
@@ -119,10 +107,6 @@ const Home = () => {
           <Text size="1.5rem" b>
             CREW-1 MISSION
           </Text>
-          <br />
-          <Button type="secondary" ghost>
-            REWATCH
-          </Button>
         </div>
       </BackgroundImageComp>
       <BackgroundImageComp url={homeImages[4].url} sort={4} fullScreen={true}>
@@ -147,10 +131,6 @@ const Home = () => {
             to carry both crew and cargo to the Earth’s orbit, the Moon, Mars,
             and beyond.
           </Text>
-          <br />
-          <Button type="secondary" ghost>
-            Learn More
-          </Button>
         </div>
       </BackgroundImageComp>
       <BackgroundImageComp url={homeImages[5].url} sort={5} fullScreen={true}>
@@ -199,6 +179,10 @@ const BackgroundImageComp = ({
   fullScreen: boolean;
   children: any;
 }) => {
+  const [load, setLoad] = useState(false);
+
+  const starsImage = process.env.PUBLIC_URL + "/home-background.jpg";
+
   return (
     <div
       style={{
@@ -210,13 +194,20 @@ const BackgroundImageComp = ({
         margin: "-10px",
         zIndex: -11,
         backgroundColor: "black",
-        backgroundImage: `url(${url})`,
+        backgroundImage: load ? `url(${url})` : `url(${starsImage})`,
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center",
         backgroundSize: "cover",
       }}
     >
       {children}
+
+      <img
+        onLoad={() => setLoad(true)}
+        style={{ display: "none" }}
+        src={url}
+        alt="background loading"
+      />
     </div>
   );
 };

@@ -6,13 +6,20 @@ const LoadingImage = () => {
     <div
       style={{
         width: "200px",
-        height: "200px",
+        height: "250px",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+        backgroundColor: "rgb(20,20,20)",
+        borderRadius: "20px",
       }}
     >
-      <Loading />
+      <div style={{ color: "grey" }}>
+        <Loading />
+        <br />
+        <br />
+        loading image...
+      </div>
     </div>
   );
 };
