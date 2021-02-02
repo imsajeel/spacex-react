@@ -12,7 +12,6 @@ const MyImageComponent: React.FC<Props> = ({ src, alt, style }) => {
   const [blur, setBlur] = useState(8);
   const [scale, setScale] = useState(1.1);
 
-  console.log("blur value", blur);
   return (
     <div style={{ ...style, overflow: "hidden", borderRadius: "5px" }}>
       <img
