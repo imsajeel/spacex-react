@@ -1,5 +1,5 @@
-import React from "react";
-import { useImage } from "react-image";
+import React, { useState } from "react";
+import LoadingBox from "./LoadingBox";
 
 interface Props {
   src: any;
@@ -8,22 +8,21 @@ interface Props {
 }
 
 const MyImageComponent: React.FC<Props> = ({ src, alt, style }) => {
-  const { src: imagesrc, error } = useImage({
-    srcList: src,
-  });
+  const [load, setLoad] = useState(false);
 
-  if (imagesrc) {
-    return (
+  return (
+    <>
       <img
-        src={imagesrc}
-        alt={alt || imagesrc}
-        style={style || { border: "0px" }}
+        onLoad={() => setLoad(true)}
+        src={src}
+        alt={alt || src}
+        style={{ ...style, display: load ? "block" : "none" }}
       />
-    );
-  } else {
-    console.log("Error", error);
-    return <div>Error</div>;
-  }
+      <div style={{ display: load ? "none" : "block" }}>
+        <LoadingBox />
+      </div>
+    </>
+  );
 };
 
 export default MyImageComponent;
