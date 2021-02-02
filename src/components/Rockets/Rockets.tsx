@@ -1,5 +1,4 @@
 import React, { Suspense } from "react";
-import { Link as RouterLink } from "react-router-dom";
 import { Card, Text } from "@geist-ui/react";
 import { RocketListQuery } from "../../generated/graphql";
 import LoadingImage from "../MyImageComponent/LoadingBox";
@@ -35,11 +34,11 @@ const Rockets: React.FC<Props> = ({ data }) => {
                   <Text type="secondary" small>
                     First flight: {rocket.first_flight}
                   </Text>
-                  <Card.Footer>
+                  {/* <Card.Footer>
                     <RouterLink to={`/rocket/${rocket.id}`}>
                       View Details
                     </RouterLink>
-                  </Card.Footer>
+                  </Card.Footer> */}
                 </Card>
               )
           )}
