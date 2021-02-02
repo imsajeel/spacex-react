@@ -3,10 +3,17 @@ import { AlertTriangle } from "@geist-ui/react-icons";
 
 const ErrorPage = () => {
   return (
-    <div className="page-center" style={{ paddingTop: "50px" }}>
+    <div className="page-center" style={{ paddingTop: "50px", color: "gray" }}>
       <AlertTriangle size={100} />
-      {/* <br /> */}
-      There was an error.
+      {navigator.onLine ? (
+        <>
+          <b>ERROR: </b> Something went wrong.
+        </>
+      ) : (
+        <>
+          <b>Network Error: </b> Please check your connection.
+        </>
+      )}
     </div>
   );
 };

@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import logo from "./spacex-logo.png";
 import { Grid } from "@geist-ui/react";
 import { Link as RouterLink } from "react-router-dom";
 
 const NavBar = () => {
+  const logo = process.env.PUBLIC_URL + "/spacex-logo.png";
+
   return (
     <Grid.Container
       gap={4}
