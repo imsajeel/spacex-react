@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import LoadingBox from "./LoadingBox";
 
 interface Props {
@@ -9,19 +9,35 @@ interface Props {
 
 const MyImageComponent: React.FC<Props> = ({ src, alt, style }) => {
   const [load, setLoad] = useState(false);
+  const [blur, setBlur] = useState(8);
+  const [scale, setScale] = useState(1.1);
 
+  console.log("blur value", blur);
   return (
-    <>
+    <div style={{ ...style, overflow: "hidden", borderRadius: "5px" }}>
       <img
-        onLoad={() => setLoad(true)}
+        onLoad={() => {
+          setTimeout(() => {
+            setBlur(0);
+            setScale(1);
+          }, 500);
+          setLoad(true);
+        }}
         src={src}
         alt={alt || src}
-        style={{ ...style, display: load ? "block" : "none" }}
+        style={{
+          ...style,
+
+          display: load ? "block" : "none",
+          filter: `blur(${blur}px)`,
+          transform: `scale(${scale})`,
+        }}
       />
+
       <div style={{ display: load ? "none" : "block" }}>
         <LoadingBox />
       </div>
-    </>
+    </div>
   );
 };
 
